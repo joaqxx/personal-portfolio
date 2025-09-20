@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joaquin Macol - Software Developer</title>
+    <meta name="description" content="Aspiring software developer specializing in web development and modern technologies">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Improved carousel animation for smoother movement */
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .tech-carousel {
+            animation: scroll 20s linear infinite;
+        }
+
+        .tech-carousel.paused {
+            animation-play-state: paused;
+        }
+
+        .tech-item {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .tech-item:hover {
+            transform: scale(1.3) translateY(-15px);
+            z-index: 10;
+            position: relative;
+        }
+
+        .tech-item:hover .tech-glow {
+            opacity: 1;
+        }
+
+        .tech-glow {
+            position: absolute;
+            inset: -6px;
+            background: linear-gradient(45deg, #1e40af, #1e3a8a, #0ea5e9);
+            border-radius: 16px;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: -1;
+            filter: blur(12px);
+        }
+
+        /* Fade in animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Card hover effects */
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Gradient text */
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Mobile menu styles */
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+
+        /* Enhanced navigation link hover effects */
+        .nav-link {
+            position: relative;
+            padding: 12px 20px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 8px;
+            left: 50%;
+            background: linear-gradient(90deg, #1e40af, #0ea5e9);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+            border-radius: 1px;
+        }
+
+        .nav-link:hover {
+            background: rgba(30, 64, 175, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .nav-link:hover::after {
+            width: 60%;
+        }
+
+        /* Futuristic about section styles */
+        .futuristic-border {
+            position: relative;
+            background: linear-gradient(145deg, #0f172a, #1e293b);
+            border: 1px solid #334155;
+        }
+
+        .futuristic-border::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(45deg, #1e40af, transparent, #0ea5e9, transparent, #1e40af);
+            border-radius: inherit;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .futuristic-border:hover::before {
+            opacity: 1;
+        }
+
+        .geometric-shape {
+            position: absolute;
+            background: linear-gradient(45deg, #1e40af20, #0ea5e920);
+            border: 1px solid #1e40af40;
+        }
+
+        .pulse-glow {
+            animation: pulse-glow 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(30, 64, 175, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(30, 64, 175, 0.6);
+            }
+        }
+
+        /* Sticky navigation positioning */
+        .sticky-nav {
+            position: sticky;
+            top: 20px;
+            z-index: 40;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100">
+    <!-- Logo and download CV button remain fixed -->
+    <div class="fixed top-6 left-6 z-50">
+        <h2 class="text-2xl font-bold text-white">
+            <span class="text-blue-400">W</span>aX
+        </h2>
+    </div>
+
+    <div class="fixed top-4 right-6 z-50">
+        <a href="#" class="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-3 rounded-full text-sm font-medium hover:from-blue-700 hover:to-blue-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
+            Download CV
+        </a>
+    </div>
+
+    <!-- Improved sticky navigation design -->
+    <nav class="sticky-nav w-full max-w-2xl mx-auto px-6 mt-4">
+        <div class="bg-black/80 backdrop-blur-xl rounded-2xl border border-gray-700/50 shadow-2xl">
+            <div class="flex justify-center items-center h-16 px-8">
+                <div class="flex items-center space-x-2">
+                    <a href="#about" class="nav-link text-white hover:text-blue-300 text-sm font-medium">About</a>
+                    <a href="#skills" class="nav-link text-white hover:text-blue-300 text-sm font-medium">Skills</a>
+                    <a href="#projects" class="nav-link text-white hover:text-blue-300 text-sm font-medium">Projects</a>
+                    <a href="#contact" class="nav-link text-white hover:text-blue-300 text-sm font-medium">Contact</a>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="md:hidden absolute right-4">
+                    <button id="mobile-menu-btn" class="text-white hover:text-blue-300 focus:outline-none p-2 rounded-lg hover:bg-gray-800/50 transition-colors">
+                        <i data-lucide="menu" class="w-5 h-5"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu fixed top-24 right-4 w-64 bg-black/90 backdrop-blur-md rounded-2xl border border-gray-700/50 shadow-2xl md:hidden">
+            <div class="px-4 py-4 space-y-2">
+                <a href="#about" class="block px-4 py-3 text-base font-medium text-white hover:text-blue-300 hover:bg-gray-800/50 rounded-xl transition-all">About</a>
+                <a href="#skills" class="block px-4 py-3 text-base font-medium text-white hover:text-blue-300 hover:bg-gray-800/50 rounded-xl transition-all">Skills</a>
+                <a href="#projects" class="block px-4 py-3 text-base font-medium text-white hover:text-blue-300 hover:bg-gray-800/50 rounded-xl transition-all">Projects</a>
+                <a href="#contact" class="block px-4 py-3 text-base font-medium text-white hover:text-blue-300 hover:bg-gray-800/50 rounded-xl transition-all">Contact</a>
+                <div class="border-t border-gray-700 mt-4 pt-4 px-3">
+                    <a href="#contact" class="block py-2 text-white hover:text-blue-300">Hire Me</a>
+                    <a href="#" class="block mt-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white px-4 py-2 rounded-full text-sm font-medium text-center hover:from-blue-700 hover:to-blue-800 transition-all">
+                        Download CV
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="pt-24 min-h-screen flex items-center bg-black">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="fade-in">
+                    <h1 class="text-5xl lg:text-6xl font-bold text-white mb-6">
+                        Hi, I'm <span class="gradient-text">Joaquin</span>
+                    </h1>
+                    <h2 class="text-xl lg:text-2xl text-gray-300 mb-8 font-light">
+                        An aspiring software developer passionate about creating innovative solutions
+                    </h2>
+                    <div class="flex space-x-4 mb-8">
+                        <a href="#contact" class="bg-white text-gray-900 px-8 py-3 rounded-lg hover:bg-gray-200 transition-colors duration-300 font-medium">
+                            Hire Me
+                        </a>
+                        <a href="#projects" class="border border-gray-600 text-gray-300 px-8 py-3 rounded-lg hover:bg-gray-800 transition-colors duration-300 font-medium">
+                            View Projects
+                        </a>
+                    </div>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
+                            <i data-lucide="linkedin" class="w-6 h-6"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
+                            <i data-lucide="github" class="w-6 h-6"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
+                            <i data-lucide="twitter" class="w-6 h-6"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="fade-in flex justify-center lg:justify-end">
+                    <div class="relative">
+                        <div class="w-80 h-80 bg-gradient-to-br from-gray-200 to-gray-300 rounded-full flex items-center justify-center">
+                            <img src="../Images/joaquin.jpg" 
+                                 alt="Joaquin Macol" 
+                                 class="w-72 h-72 rounded-full object-cover border-4 border-white shadow-lg">
+                        </div>
+                        <div class="absolute -top-4 -right-4 w-20 h-20 bg-white rounded-full shadow-lg flex items-center justify-center">
+                            <i data-lucide="code" class="w-8 h-8 text-gray-700"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Enhanced tech carousel with smoother animation -->
+        <div class="absolute bottom-0 left-0 right-0 py-8 bg-gradient-to-t from-black/60 to-transparent backdrop-blur-sm border-t border-blue-900/30 overflow-hidden">
+            <div class="whitespace-nowrap">
+                <div id="tech-carousel" class="tech-carousel inline-flex space-x-20">
+                    <!-- Original set of tech logos -->
+                    <div class="tech-item flex items-center space-x-3 relative">
+                        <div class="tech-glow"></div>
+                        <img src="/placeholder.svg?height=40&width=40" alt="JavaScript" class="w-10 h-10 relative z-10">
+                        <span class="text-lg font-medium text-white/90 relative z-10">JavaScript</span>
+                    </div>
+                    <div class="tech-item flex items-center space-x-3 relative">
+                        <div class="tech-glow"></div>
+                        <img src="/placeholder.svg?height=40&width=40" alt="Python" class="w-10 h-10 relative z-10">
+                        <span class="text-lg font-medium text-white/90 relative z-10">Python</span>
+                    </div>
+                    <div class="tech-item flex items-center space-x-3 relative">
+                        <div class="tech-glow"></div>
+                        <img src="/placeholder.svg?height=40&width=40" alt="React" class="w-10 h-10 relative z-10">
+                        <span class="text-lg font-medium text-white/90 relative z-10">React</span>
+                    </div>
+                    <div class="tech-item flex items-center space-x-3 relative">
+                        <div class="tech-glow"></div>
+                        <img src="/placeholder.svg?height=40&width=40" alt="Node.js" class="w-10 h-10 relative z-10">
+                        <span class="text-lg font-medium text-white/90 relative z-10">Node.js</span>
+                    </div>
+                    <div class="tech-item flex items-center space-x-3 relative">
+                        <div class="tech-glow"></div>
+                        <img src="/placeholder.svg?height=40&width=40" alt="HTML5" class="w-10 h-10 relative z-10">
+                        <span class="text-lg font-medium text-white/90 relative z-10">HTML5</span>
+                    </div>
+                    <div class="tech-item flex items-center space-x-3 relative">
+                        <div class="tech-glow"></div>
+                        <img src="/placeholder.svg?height=40&width=40" alt="CSS3" class="w-10 h-10 relative z-10">
+                        <span class="text-lg font-medium text-white/90 relative z-10">CSS3</span>
+                    </div>
+                    <div class="tech-item flex items-center space-x-3 relative">
+                        <div class="tech-glow"></div>
+                        <img src="/placeholder.svg?height=40&width=40" alt="Git" class="w-10 h-10 relative z-10">
+                        <span class="text-lg font-medium text-white/90 relative z-10">Git</span>
+                    </div>
+                    <div class="tech-item flex items-center space-x-3 relative">
+                        <div class="tech-glow"></div>
+                        <img src="/placeholder.svg?height=40&width=40" alt="MongoDB" class="w-10 h-10 relative z-10">
+                        <span class="text-lg font-medium text-white/90 relative z-10">MongoDB</span>
+                    </div>
+                    <div class="tech-item flex items-center space-x-3 relative">
+                        <div class="tech-glow"></div>
+                        <img src="/placeholder.svg?height=40&width=40" alt="TypeScript" class="w-10 h-10 relative z-10">
+                        <span class="text-lg font-medium text-white/90 relative z-10">TypeScript</span>
+                    </div>
+                    <div class="tech-item flex items-center space-x-3 relative">
+                        <div class="tech-glow"></div>
+                        <img src="/placeholder.svg?height=40&width=40" alt="Vue.js" class="w-10 h-10 relative z-10">
+                        <span class="text-lg font-medium text-white/90 relative z-10">Vue.js</span>
+                    </div>
+
+                    <!-- Duplicated set for infinite loop -->
+                    <div class="tech-item flex items-center space-x-3 relative">
+                        <div class="tech-glow"></div>
+                        <img src="/placeholder.svg?height=40&width=40" alt="JavaScript" class="w-10 h-10 relative z-10">
+                        <span class="text-lg font-medium text-white/90 relative z-10">JavaScript</span>
+                    </div>
+                    <div class="tech-item flex items-center space-x-3 relative">
+                        <div class="tech-glow"></div>
+                        <img src="/placeholder.svg?height=40&width=40" alt="Python" class="w-10 h-10 relative z-10">
+                        <span class="text-lg font-medium text-white/90 relative z-10">Python</span>
+                    </div>
+                    <div class="tech-item flex items-center space-x-3 relative">
+                        <div class="tech-glow"></div>
+                        <img src="/placeholder.svg?height=40&width=40" alt="React" class="w-10 h-10 relative z-10">
+                        <span class="text-lg font-medium text-white/90 relative z-10">React</span>
+                    </div>
+                    <div class="tech-item flex items-center space-x-3 relative">
+                        <div class="tech-glow"></div>
+                        <img src="/placeholder.svg?height=40&width=40" alt="Node.js" class="w-10 h-10 relative z-10">
+                        <span class="text-lg font-medium text-white/90 relative z-10">Node.js</span>
+                    </div>
+                    <div class="tech-item flex items-center space-x-3 relative">
+                        <div class="tech-glow"></div>
+                        <img src="/placeholder.svg?height=40&width=40" alt="HTML5" class="w-10 h-10 relative z-10">
+                        <span class="text-lg font-medium text-white/90 relative z-10">HTML5</span>
+                    </div>
+                    <div class="tech-item flex items-center space-x-3 relative">
+                        <div class="tech-glow"></div>
+                        <img src="/placeholder.svg?height=40&width=40" alt="CSS3" class="w-10 h-10 relative z-10">
+                        <span class="text-lg font-medium text-white/90 relative z-10">CSS3</span>
+                    </div>
+                    <div class="tech-item flex items-center space-x-3 relative">
+                        <div class="tech-glow"></div>
+                        <img src="/placeholder.svg?height=40&width=40" alt="Git" class="w-10 h-10 relative z-10">
+                        <span class="text-lg font-medium text-white/90 relative z-10">Git</span>
+                    </div>
+                    <div class="tech-item flex items-center space-x-3 relative">
+                        <div class="tech-glow"></div>
+                        <img src="/placeholder.svg?height=40&width=40" alt="MongoDB" class="w-10 h-10 relative z-10">
+                        <span class="text-lg font-medium text-white/90 relative z-10">MongoDB</span>
+                    </div>
+                    <div class="tech-item flex items-center space-x-3 relative">
+                        <div class="tech-glow"></div>
+                        <img src="/placeholder.svg?height=40&width=40" alt="TypeScript" class="w-10 h-10 relative z-10">
+                        <span class="text-lg font-medium text-white/90 relative z-10">TypeScript</span>
+                    </div>
+                    <div class="tech-item flex items-center space-x-3 relative">
+                        <div class="tech-glow"></div>
+                        <img src="/placeholder.svg?height=40&width=40" alt="Vue.js" class="w-10 h-10 relative z-10">
+                        <span class="text-lg font-medium text-white/90 relative z-10">Vue.js</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Completely redesigned futuristic About section -->
+    <section id="about" class="py-20 bg-gradient-to-br from-gray-900 via-blue-950 to-gray-900 relative overflow-hidden">
+        <!-- Geometric background elements -->
+        <div class="geometric-shape w-64 h-64 rounded-full top-20 -left-32 blur-3xl"></div>
+        <div class="geometric-shape w-96 h-96 rounded-full bottom-20 -right-48 blur-3xl"></div>
+        <div class="geometric-shape w-32 h-32 rotate-45 top-1/2 right-1/4 blur-2xl"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                
+                <div class="fade-in">
+                    <div class="relative">
+                        <div class="futuristic-border rounded-3xl p-8 pulse-glow">
+                            <img src="/placeholder.svg?height=500&width=400" 
+                                 alt="About Joaquin" 
+                                 class="w-full h-96 object-cover rounded-2xl">
+                            <div class="absolute -bottom-8 -right-8 bg-gradient-to-br from-blue-600 to-blue-800 p-8 rounded-2xl shadow-2xl border border-blue-500/30">
+                                <div class="text-center">
+                                    <div class="text-4xl font-bold text-white mb-2">2+</div>
+                                    <div class="text-sm text-blue-200 font-medium">Years Learning</div>
+                                    <div class="w-12 h-1 bg-blue-400 mx-auto mt-2 rounded-full"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Floating tech icons -->
+                        <div class="absolute -top-4 -left-4 w-12 h-12 bg-blue-600/20 rounded-xl flex items-center justify-center border border-blue-500/30 backdrop-blur-sm">
+                            <i data-lucide="code-2" class="w-6 h-6 text-blue-400"></i>
+                        </div>
+                        <div class="absolute top-1/4 -right-6 w-10 h-10 bg-blue-600/20 rounded-lg flex items-center justify-center border border-blue-500/30 backdrop-blur-sm">
+                            <i data-lucide="cpu" class="w-5 h-5 text-blue-400"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="fade-in">
+                    <div class="space-y-8">
+                        <div>
+                            <h2 class="text-5xl font-bold text-white mb-4">
+                                About <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">Me</span>
+                            </h2>
+                            <div class="w-20 h-1 bg-gradient-to-r from-blue-500 to-blue-700 rounded-full mb-6"></div>
+                            <h3 class="text-2xl text-blue-300 mb-8 font-light">Aspiring Software Developer & Web Developer</h3>
+                        </div>
+                        
+                        <div class="space-y-6">
+                            <p class="text-gray-300 leading-relaxed text-lg">
+                                I want to be one of the best in the tech industry, helping to make the world a better place through technology. 
+                                I understand this path isn't easy, which is why I'm working hard to equip myself with the knowledge needed to solve real-world problems.
+                            </p>
+                            <p class="text-gray-300 leading-relaxed text-lg">
+                                I believe technology should help people, not create more problems. My goal is to develop solutions that make people's lives easier and more efficient.
+                            </p>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="futuristic-border rounded-xl p-4 hover:bg-blue-950/30 transition-all duration-300">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-8 h-8 bg-blue-600/20 rounded-lg flex items-center justify-center">
+                                        <i data-lucide="check-circle" class="w-4 h-4 text-blue-400"></i>
+                                    </div>
+                                    <span class="text-gray-300 font-medium">Problem Solver</span>
+                                </div>
+                            </div>
+                            <div class="futuristic-border rounded-xl p-4 hover:bg-blue-950/30 transition-all duration-300">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-8 h-8 bg-blue-600/20 rounded-lg flex items-center justify-center">
+                                        <i data-lucide="users" class="w-4 h-4 text-blue-400"></i>
+                                    </div>
+                                    <span class="text-gray-300 font-medium">Team Player</span>
+                                </div>
+                            </div>
+                            <div class="futuristic-border rounded-xl p-4 hover:bg-blue-950/30 transition-all duration-300">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-8 h-8 bg-blue-600/20 rounded-lg flex items-center justify-center">
+                                        <i data-lucide="zap" class="w-4 h-4 text-blue-400"></i>
+                                    </div>
+                                    <span class="text-gray-300 font-medium">Quick Learner</span>
+                                </div>
+                            </div>
+                            <div class="futuristic-border rounded-xl p-4 hover:bg-blue-950/30 transition-all duration-300">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-8 h-8 bg-blue-600/20 rounded-lg flex items-center justify-center">
+                                        <i data-lucide="eye" class="w-4 h-4 text-blue-400"></i>
+                                    </div>
+                                    <span class="text-gray-300 font-medium">Detail Oriented</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-4">
+                            <a href="#contact" class="inline-flex items-center space-x-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white px-8 py-4 rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
+                                <span class="font-medium">Let's Work Together</span>
+                                <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="skills" class="py-20 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl font-bold text-white mb-4">Skills & Expertise</h2>
+                <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+                    Technologies and tools I use to bring ideas to life
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="fade-in card-hover bg-gray-800 p-8 rounded-xl">
+                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
+                        <i data-lucide="code" class="w-6 h-6 text-blue-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-4">Frontend Development</h3>
+                    <p class="text-gray-300 mb-6">
+                        Creating responsive and interactive user interfaces with modern frameworks and libraries.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-gray-700 text-gray-300 rounded-full text-sm">HTML/CSS</span>
+                        <span class="px-3 py-1 bg-gray-700 text-gray-300 rounded-full text-sm">JavaScript</span>
+                        <span class="px-3 py-1 bg-gray-700 text-gray-300 rounded-full text-sm">React</span>
+                    </div>
+                </div>
+                
+                <div class="fade-in card-hover bg-gray-800 p-8 rounded-xl">
+                    <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-6">
+                        <i data-lucide="server" class="w-6 h-6 text-green-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-4">Backend Development</h3>
+                    <p class="text-gray-300 mb-6">
+                        Building robust server-side applications and APIs with modern technologies.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-gray-700 text-gray-300 rounded-full text-sm">Node.js</span>
+                        <span class="px-3 py-1 bg-gray-700 text-gray-300 rounded-full text-sm">Python</span>
+                        <span class="px-3 py-1 bg-gray-700 text-gray-300 rounded-full text-sm">SQL</span>
+                    </div>
+                </div>
+                
+                <div class="fade-in card-hover bg-gray-800 p-8 rounded-xl">
+                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-6">
+                        <i data-lucide="database" class="w-6 h-6 text-purple-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-4">Database Management</h3>
+                    <p class="text-gray-300 mb-6">
+                        Designing and managing databases for optimal performance and scalability.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-gray-700 text-gray-300 rounded-full text-sm">MongoDB</span>
+                        <span class="px-3 py-1 bg-gray-700 text-gray-300 rounded-full text-sm">MySQL</span>
+                        <span class="px-3 py-1 bg-gray-700 text-gray-300 rounded-full text-sm">PostgreSQL</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="projects" class="py-20 bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl font-bold text-white mb-4">Featured Projects</h2>
+                <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+                    A showcase of my recent work and personal projects
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="fade-in card-hover bg-gray-900 rounded-xl overflow-hidden shadow-sm">
+                    <img src="/placeholder.svg?height=200&width=400" 
+                         alt="Project 1" 
+                         class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-white mb-3">E-Commerce Platform</h3>
+                        <p class="text-gray-300 mb-4">
+                            A full-stack e-commerce solution with user authentication, payment integration, and admin dashboard.
+                        </p>
+                        <div class="flex flex-wrap gap-3 mb-4">
+                            <div class="flex items-center space-x-1 px-2 py-1 bg-gray-700 rounded">
+                                <img src="/placeholder.svg?height=16&width=16" alt="React" class="w-4 h-4">
+                                <span class="text-gray-300 text-sm">React</span>
+                            </div>
+                            <div class="flex items-center space-x-1 px-2 py-1 bg-gray-700 rounded">
+                                <img src="/placeholder.svg?height=16&width=16" alt="Node.js" class="w-4 h-4">
+                                <span class="text-gray-300 text-sm">Node.js</span>
+                            </div>
+                            <div class="flex items-center space-x-1 px-2 py-1 bg-gray-700 rounded">
+                                <img src="/placeholder.svg?height=16&width=16" alt="MongoDB" class="w-4 h-4">
+                                <span class="text-gray-300 text-sm">MongoDB</span>
+                            </div>
+                        </div>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                                <i data-lucide="external-link" class="w-5 h-5"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                                <i data-lucide="github" class="w-5 h-5"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="fade-in card-hover bg-gray-900 rounded-xl overflow-hidden shadow-sm">
+                    <img src="/placeholder.svg?height=200&width=400" 
+                         alt="Project 2" 
+                         class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-white mb-3">Task Management App</h3>
+                        <p class="text-gray-300 mb-4">
+                            A collaborative task management tool with real-time updates and team collaboration features.
+                        </p>
+                        <div class="flex flex-wrap gap-3 mb-4">
+                            <div class="flex items-center space-x-1 px-2 py-1 bg-gray-700 rounded">
+                                <img src="/placeholder.svg?height=16&width=16" alt="Vue.js" class="w-4 h-4">
+                                <span class="text-gray-300 text-sm">Vue.js</span>
+                            </div>
+                            <div class="flex items-center space-x-1 px-2 py-1 bg-gray-700 rounded">
+                                <img src="/placeholder.svg?height=16&width=16" alt="Express" class="w-4 h-4">
+                                <span class="text-gray-300 text-sm">Express</span>
+                            </div>
+                            <div class="flex items-center space-x-1 px-2 py-1 bg-gray-700 rounded">
+                                <img src="/placeholder.svg?height=16&width=16" alt="Socket.io" class="w-4 h-4">
+                                <span class="text-gray-300 text-sm">Socket.io</span>
+                            </div>
+                        </div>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                                <i data-lucide="external-link" class="w-5 h-5"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                                <i data-lucide="github" class="w-5 h-5"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="fade-in card-hover bg-gray-900 rounded-xl overflow-hidden shadow-sm">
+                    <img src="/placeholder.svg?height=200&width=400" 
+                         alt="Project 3" 
+                         class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-white mb-3">Weather Dashboard</h3>
+                        <p class="text-gray-300 mb-4">
+                            A responsive weather application with location-based forecasts and interactive maps.
+                        </p>
+                        <div class="flex flex-wrap gap-3 mb-4">
+                            <div class="flex items-center space-x-1 px-2 py-1 bg-gray-700 rounded">
+                                <img src="/placeholder.svg?height=16&width=16" alt="JavaScript" class="w-4 h-4">
+                                <span class="text-gray-300 text-sm">JavaScript</span>
+                            </div>
+                            <div class="flex items-center space-x-1 px-2 py-1 bg-gray-700 rounded">
+                                <img src="/placeholder.svg?height=16&width=16" alt="API" class="w-4 h-4">
+                                <span class="text-gray-300 text-sm">API</span>
+                            </div>
+                            <div class="flex items-center space-x-1 px-2 py-1 bg-gray-700 rounded">
+                                <img src="/placeholder.svg?height=16&width=16" alt="CSS3" class="w-4 h-4">
+                                <span class="text-gray-300 text-sm">CSS3</span>
+                            </div>
+                        </div>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                                <i data-lucide="external-link" class="w-5 h-5"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                                <i data-lucide="github" class="w-5 h-5"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12 fade-in">
+                <a href="#" class="inline-flex items-center space-x-2 border border-gray-600 text-gray-300 px-8 py-3 rounded-lg hover:bg-gray-800 transition-colors duration-300">
+                    <span>View All Projects</span>
+                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="contact" class="py-20 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mx-auto text-center">
+                <div class="fade-in">
+                    <h2 class="text-4xl font-bold text-white mb-6">Let's Work Together</h2>
+                    <p class="text-xl text-gray-300 mb-12">
+                        Ready to bring your ideas to life? Let's discuss how I can help you achieve your goals.
+                    </p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                        <div class="flex flex-col items-center space-y-4">
+                            <div class="w-16 h-16 bg-gray-800 rounded-full flex items-center justify-center">
+                                <i data-lucide="mail" class="w-8 h-8 text-white"></i>
+                            </div>
+                            <div class="text-center">
+                                <div class="font-medium text-white text-lg">Email</div>
+                                <div class="text-gray-300">joaquin.macol@email.com</div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-col items-center space-y-4">
+                            <div class="w-16 h-16 bg-gray-800 rounded-full flex items-center justify-center">
+                                <i data-lucide="phone" class="w-8 h-8 text-white"></i>
+                            </div>
+                            <div class="text-center">
+                                <div class="font-medium text-white text-lg">Phone</div>
+                                <div class="text-gray-300">+1 (555) 123-4567</div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-col items-center space-y-4">
+                            <div class="w-16 h-16 bg-gray-800 rounded-full flex items-center justify-center">
+                                <i data-lucide="map-pin" class="w-8 h-8 text-white"></i>
+                            </div>
+                            <div class="text-center">
+                                <div class="font-medium text-white text-lg">Location</div>
+                                <div class="text-gray-300">Available for Remote Work</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="#" class="inline-flex items-center justify-center space-x-2 bg-white text-gray-900 px-8 py-3 rounded-lg hover:bg-gray-200 transition-colors duration-300 font-medium">
+                            <i data-lucide="download" class="w-5 h-5"></i>
+                            <span>Download Resume</span>
+                        </a>
+                        <a href="mailto:joaquin.macol@email.com" class="inline-flex items-center justify-center space-x-2 border border-gray-600 text-gray-300 px-8 py-3 rounded-lg hover:bg-gray-800 transition-colors duration-300 font-medium">
+                            <i data-lucide="mail" class="w-5 h-5"></i>
+                            <span>Send Email</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold text-white mb-4"><span class="text-gray-400">E</span>LITE</h3>
+                    <p class="text-gray-400 mb-4">
+                        Passionate about creating innovative solutions that make a difference.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i data-lucide="linkedin" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i data-lucide="github" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i data-lucide="twitter" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition-colors">About</a></li>
+                        <li><a href="#skills" class="text-gray-400 hover:text-white transition-colors">Skills</a></li>
+                        <li><a href="#projects" class="text-gray-400 hover:text-white transition-colors">Projects</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Get In Touch</h4>
+                    <p class="text-gray-400 mb-2">joaquin.macol@email.com</p>
+                    <p class="text-gray-400 mb-4">+1 (555) 123-4567</p>
+                    <p class="text-gray-400">Available for freelance opportunities</p>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center">
+                <p class="text-gray-400">
+                    © 2024 Joaquin Macol. All rights reserved. Thank you for visiting my website!
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                mobileMenu.classList.remove('open');
+            }
+        });
+
+        const carousel = document.getElementById('tech-carousel');
+        const techItems = document.querySelectorAll('.tech-item');
+
+        techItems.forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                carousel.classList.add('paused');
+            });
+
+            item.addEventListener('mouseleave', () => {
+                carousel.classList.remove('paused');
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('.sticky-nav');
+            if (window.scrollY > 100) {
+                nav.classList.add('shadow-2xl');
+            } else {
+                nav.classList.remove('shadow-2xl');
+            }
+        });
+    </script>
+</body>
+</html>
